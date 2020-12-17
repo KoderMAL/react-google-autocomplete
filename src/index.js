@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import debounce from 'lodash.debounce'
 
 export default class ReactGoogleAutocomplete extends React.Component {
   static propTypes = {
@@ -19,7 +20,8 @@ export default class ReactGoogleAutocomplete extends React.Component {
       sessionToken: PropTypes.object,
       types: PropTypes.arrayOf(PropTypes.string)
     }),
-    apiKey: PropTypes.string
+    apiKey: PropTypes.string,
+    debounceTime: PropTypes.number
   };
 
   constructor(props) {
@@ -142,7 +144,8 @@ export class ReactCustomGoogleAutocomplete extends React.Component {
   static propTypes = {
     input: PropTypes.node.isRequired,
     onOpen: PropTypes.func.isRequired,
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired,
+    debounceTime: PropTypes.number
   };
 
   constructor(props) {
@@ -168,6 +171,8 @@ export class ReactCustomGoogleAutocomplete extends React.Component {
       this.props.onClose();
     }
   }
+  onChangeCallback = e => this.onChange(e)
+  debouncedOnChange = debounce(this.onChangeCallback, this.props.debounceTime);
 
   componentDidMount() {
     if (this.props.input.value) {
@@ -189,9 +194,7 @@ export class ReactCustomGoogleAutocomplete extends React.Component {
         {React.cloneElement(this.props.input, {
           ...this.props,
           ref: 'input',
-          onChange: e => {
-            this.onChange(e);
-          }
+          onChange: this.props.debounceTime ? this.debouncedOnChange : this.onChangeCallback
         })}
         <div ref="div" />
       </div>

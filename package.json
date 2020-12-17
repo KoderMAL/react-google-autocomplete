@@ -1,6 +1,6 @@
 {
   "name": "react-google-autocomplete",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "React component for google autocomplete.",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ErrorPro/react-google-autocomplete.git"
+    "url": "git+https://github.com/KoderMAL/react-google-autocomplete.git"
   },
   "keywords": [
     "react",
@@ -23,11 +23,12 @@
   "author": "Ven Korolev",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ErrorPro/react-google-autocomplete/issues"
+    "url": "https://github.com/KoderMAL/react-google-autocomplete/issues"
   },
-  "homepage": "https://github.com/ErrorPro/react-google-autocomplete#readme",
+  "homepage": "https://github.com/KoderMAL/react-google-autocomplete#readme",
   "dependencies": {
-    "prop-types": "^15.5.0"
+    "prop-types": "^15.5.0",
+    "lodash.debounce": "4.0.8"
   },
   "peerDependencies": {
     "react": "*"
